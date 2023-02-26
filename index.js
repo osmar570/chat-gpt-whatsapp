@@ -1,6 +1,11 @@
 import { create } from 'venom-bot'
 import * as dotenv from 'dotenv'
 import { Configuration, OpenAIApi } from "openai"
+import express from 'express'
+
+const app = express();
+
+app.get('/', (req,res) => res.send('Hello World! 🤖'))
 
 dotenv.config()
 
@@ -92,6 +97,9 @@ const commands = (client, message) => {
     }
 }
 
+app.listen(3000);
+
 async function start(client) {
     client.onAnyMessage((message) => commands(client, message));
 }
+
